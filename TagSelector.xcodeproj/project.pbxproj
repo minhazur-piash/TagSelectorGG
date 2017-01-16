@@ -25,6 +25,8 @@
 		146A118D1E2B66200032896C /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A118A1E2B66200032896C /* CloseButton.swift */; };
 		146A118E1E2B66200032896C /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A118C1E2B66200032896C /* TagListView.swift */; };
 		146A11911E2B66600032896C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A11901E2B66600032896C /* Color.swift */; };
+		14706A341E2CDD210001408D /* CustomTagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14706A331E2CDD210001408D /* CustomTagView.xib */; };
+		14706A361E2CEEF50001408D /* SuggestedTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14706A351E2CEEF50001408D /* SuggestedTagsCollectionViewCell.swift */; };
 		CC168B04200D163CB673DA89 /* Pods_TagSelector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE12723B6AC86E5EF1061AC7 /* Pods_TagSelector.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +87,8 @@
 		146A118B1E2B66200032896C /* TagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagListView.h; sourceTree = "<group>"; };
 		146A118C1E2B66200032896C /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		146A11901E2B66600032896C /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		14706A331E2CDD210001408D /* CustomTagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomTagView.xib; path = ../CustomTagView.xib; sourceTree = "<group>"; };
+		14706A351E2CEEF50001408D /* SuggestedTagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedTagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C1AA8F6892FDC282D86FD8A /* Pods-TagSelector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagSelector.release.xcconfig"; path = "Pods/Target Support Files/Pods-TagSelector/Pods-TagSelector.release.xcconfig"; sourceTree = "<group>"; };
 		922F0FB6DD898531095A1B07 /* Pods-TagSelector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagSelector.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TagSelector/Pods-TagSelector.debug.xcconfig"; sourceTree = "<group>"; };
 		CE12723B6AC86E5EF1061AC7 /* Pods_TagSelector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TagSelector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,7 @@
 		1466925C1E27614100184699 /* TagSelector */ = {
 			isa = PBXGroup;
 			children = (
+				14706A331E2CDD210001408D /* CustomTagView.xib */,
 				146A11881E2B660C0032896C /* TagView.swift */,
 				146A118F1E2B66600032896C /* TagListView */,
 				1466925D1E27614100184699 /* AppDelegate.swift */,
@@ -149,6 +154,7 @@
 				1466925F1E27614100184699 /* ViewController.swift */,
 				146692A11E279EAD00184699 /* TagSelectorViewController.swift */,
 				146692611E27614100184699 /* Main.storyboard */,
+				14706A351E2CEEF50001408D /* SuggestedTagsCollectionViewCell.swift */,
 				146692641E27614100184699 /* Assets.xcassets */,
 				146692661E27614100184699 /* LaunchScreen.storyboard */,
 				146692691E27614100184699 /* Info.plist */,
@@ -320,6 +326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14706A341E2CDD210001408D /* CustomTagView.xib in Resources */,
 				146692681E27614100184699 /* LaunchScreen.storyboard in Resources */,
 				146692651E27614100184699 /* Assets.xcassets in Resources */,
 				146692631E27614100184699 /* Main.storyboard in Resources */,
@@ -414,6 +421,7 @@
 				146A118E1E2B66200032896C /* TagListView.swift in Sources */,
 				146A11911E2B66600032896C /* Color.swift in Sources */,
 				059678FA1E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift in Sources */,
+				14706A361E2CEEF50001408D /* SuggestedTagsCollectionViewCell.swift in Sources */,
 				140C4E0F1E2BA01B00167D79 /* TagsCollectionViewController.swift in Sources */,
 				146692601E27614100184699 /* ViewController.swift in Sources */,
 				1466925E1E27614100184699 /* AppDelegate.swift in Sources */,

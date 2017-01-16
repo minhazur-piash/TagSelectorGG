@@ -8,11 +8,13 @@
 
 import UIKit
 import Presentr
+import TTGTagCollectionView
 
 class ViewController: UIViewController, TranslateControllerDelegate {
     
     var viewController:UIViewController?
     
+    @IBOutlet weak var textTagCollectionView: TTGTextTagCollectionView!
     let presenter: Presentr = {
         let width = ModalSize.full
         let height = ModalSize.custom(size: 600.0)
@@ -29,6 +31,8 @@ class ViewController: UIViewController, TranslateControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        textTagCollectionView.addTags(["this", "is", "text"])
     }
     
     override func didReceiveMemoryWarning() {
