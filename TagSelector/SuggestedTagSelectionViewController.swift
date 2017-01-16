@@ -49,25 +49,40 @@ class SuggestedTagSelectionViewController: UIViewController, UICollectionViewDat
         
     }
     
+    func isAlreadySelected(tag: String) -> Bool {
+        return selectedTags.contains(tag)
+    }
     
     func tagPressed(_ sender: TagView!) {
         sender.onTap?(sender)
-        if isAlreadySelected(tag: sender.currentTitle) {
+        
+        if isAlreadySelected(tag: sender.currentTitle!) {
             sender.isSelected = false
-            tags.remove(at: <#T##Int#>)
+            selectedTags.remove(at: selectedTags.index(of: sender.currentTitle!)!)
+            
+            if let tagManager = tagManageDelegate {
+                tagManager.tagRemoved(tag: sender.currentTitle!)
+            }
+            
+        } else {
+            sender.isSelected = true
+            selectedTags.append(sender.currentTitle!)
+            if let tagManager = tagManageDelegate {
+                tagManager.tagSelected(tag: sender.currentTitle!)
+            }
+
         }
-        sender.isSelected = true
+        
 //        delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
     }
     
-    func isAlreadySelected(tag: String) -> Bool {
-        return tags.contains(tag)
-    }
+   
 
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: widthForString(text: tags[indexPath.row], font: UIFont.systemFont(ofSize: 16), height: 16) + 35, height: 33)
+        let cellWidth = widthForString(text: tags[indexPath.row], font: UIFont.systemFont(ofSize: 16), height: 16) + 30
+        return CGSize(width: cellWidth, height: 33)
     }
     
     

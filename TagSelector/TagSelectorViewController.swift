@@ -21,11 +21,12 @@ protocol TagManageDelegate {
     func tagRemoved(tag: String)
 }
 
-class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagListViewDelegate, TagManageDelegate {
-    
+class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManageDelegate {
     @IBOutlet weak var tagSearchBar: CustomSearchBar!
     @IBOutlet weak var tagsContainer: UIView!
-    @IBOutlet weak var selectedTagsListView: TagListView!
+    @IBOutlet weak var selectedTagsCollectionView: UICollectionView!
+    
+    fileprivate var selectedTags: [String] = []
     
     private lazy var suggestedTagSelectionViewController: SuggestedTagSelectionViewController = {
         // Load Storyboard
@@ -57,13 +58,13 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagListVi
     
     var translateControllerDelegate: TranslateControllerDelegate!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         tagSearchBar.delegate = self
-        selectedTagsListView.delegate = self
+        tagSearchBar.delegate = self
         
+        selectedTagsCollectionView.dataSource = self
+        selectedTagsCollectionView.delegate = self
         
         remove(asChildViewController: searchedTagSelectionViewController)
         add(asChildViewController: suggestedTagSelectionViewController)
@@ -114,26 +115,71 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagListVi
             (self.childViewControllers[0] as! TagSearchDelegate).searchTag(fitlerText: searchText)
         }
     }
-    
-    // MARK: TagListViewDelegate
-    func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
-        print("Tag pressed: \(title), \(sender)")
-        tagView.isSelected = !tagView.isSelected
-    }
-    
-    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
-        print("Tag Remove pressed: \(title), \(sender)")
-        sender.removeTagView(tagView)
-    }
+
     
     func tagSelected(tag: String) {
-        selectedTagsListView.addTag(tag)
+        selectedTags.append(tag)
+        selectedTagsCollectionView.reloadData()
     }
     
     func tagRemoved(tag: String) {
-        selectedTagsListView.removeTag(tag)
+        selectedTags.remove(at: selectedTags.index(of: tag)!)
+        selectedTagsCollectionView.reloadData()
     }
     
 }
 
 
+extension TagSelectorViewConroller: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return selectedTags.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectedTagsCollectionViewCell", for: indexPath) as! SelectedTagsCollectionViewCell
+        cell.selectedTagView.setTitle(selectedTags[indexPath.row], for: .normal)
+        cell.selectedTagView.enableRemoveButton = true
+        cell.selectedTagView.cornerRadius = 15
+        cell.selectedTagView.textFont = UIFont.systemFont(ofSize: 14)
+        cell.selectedTagView.paddingX = 10
+        cell.selectedTagView.textColor = UIColor.white
+        cell.selectedTagView.tagBackgroundColor = UIColor.blue
+        cell.selectedTagView.removeButtonOvalSize = 22
+        cell.selectedTagView.removeButtonIconSize = 12
+        cell.selectedTagView.removeIconLineWidth = 1
+        cell.selectedTagView.removeButton.addTarget(self, action: #selector(tagRemovePressed(_:)), for: .touchUpInside)
+        
+        return cell
+    }
+    
+    func isAlreadySelected(tag: String) -> Bool {
+        return selectedTags.contains(tag)
+    }
+    
+    func tagRemovePressed(_ closeButton: CloseButton!) {
+        if let tagView = closeButton.tagView {
+            selectedTags.remove(at: selectedTags.index(of: tagView.currentTitle!)!)
+            selectedTagsCollectionView.reloadData()
+        }
+    }
+}
+
+extension TagSelectorViewConroller: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = widthForString(text: selectedTags[indexPath.row], font: UIFont.systemFont(ofSize: 14), height: 14) + 50
+        return CGSize(width: cellWidth, height: 30)
+    }
+    
+    func widthForString(text:String, font:UIFont, height:CGFloat) -> CGFloat{
+        let label:UILabel = UILabel(frame: CGRect(x:0, y:0, width: CGFloat.greatestFiniteMagnitude, height: height))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = font
+        label.text = text
+        label.sizeToFit()
+        return label.frame.width
+    }
+
+}

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lTV-oD-2ro">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="795-ce-efN">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -92,51 +92,51 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tl-cM-hsL" userLabel="Selected Tags View">
                                 <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzZ-s1-cpe" customClass="TagListView" customModule="TagSelector" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="enableRemoveButton" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="removeButtonIconSize">
-                                                <real key="value" value="11"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="removeIconLineWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="removeIconLineColor">
-                                                <color key="value" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
-                                                <real key="value" value="8"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
-                                                <real key="value" value="8"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="marginY">
-                                                <real key="value" value="6"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="marginX">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="13"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="removeButtonOvalSize">
-                                                <real key="value" value="21"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="removeButtonOvalColor">
-                                                <color key="value" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dhD-ZZ-qjj">
+                                        <rect key="frame" x="14" y="0.0" width="292" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pmg-p8-Jti">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SelectedTagsCollectionViewCell" id="9xl-rr-kL4" customClass="SelectedTagsCollectionViewCell" customModule="TagSelector" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRb-aP-2tc" userLabel="Selected Tag View" customClass="TagView" customModule="TagSelector" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="10" width="50" height="30"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="Edw-xY-bhn"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="MRb-aP-2tc" secondAttribute="trailing" id="Aqz-63-Fnx"/>
+                                                    <constraint firstItem="MRb-aP-2tc" firstAttribute="centerY" secondItem="9xl-rr-kL4" secondAttribute="centerY" id="Cfx-rF-nHn"/>
+                                                    <constraint firstItem="MRb-aP-2tc" firstAttribute="leading" secondItem="9xl-rr-kL4" secondAttribute="leading" id="dga-kS-trq"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="selectedTagView" destination="MRb-aP-2tc" id="Cpf-Cg-g7e"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="7fC-NF-i3b"/>
-                                    <constraint firstAttribute="bottom" secondItem="jzZ-s1-cpe" secondAttribute="bottom" id="9hc-Y2-W4I"/>
-                                    <constraint firstItem="jzZ-s1-cpe" firstAttribute="top" secondItem="3tl-cM-hsL" secondAttribute="top" id="C3A-SV-Vkk"/>
-                                    <constraint firstItem="jzZ-s1-cpe" firstAttribute="leading" secondItem="3tl-cM-hsL" secondAttribute="leading" id="eq9-Wf-ZFb"/>
-                                    <constraint firstAttribute="trailing" secondItem="jzZ-s1-cpe" secondAttribute="trailing" id="j6O-f9-MP1"/>
+                                    <constraint firstItem="dhD-ZZ-qjj" firstAttribute="top" secondItem="3tl-cM-hsL" secondAttribute="top" id="8IX-v0-UKR"/>
+                                    <constraint firstAttribute="bottom" secondItem="dhD-ZZ-qjj" secondAttribute="bottom" id="H9M-dO-E1I"/>
+                                    <constraint firstItem="dhD-ZZ-qjj" firstAttribute="leading" secondItem="3tl-cM-hsL" secondAttribute="leading" constant="14" id="Lex-6S-nSN"/>
+                                    <constraint firstAttribute="trailing" secondItem="dhD-ZZ-qjj" secondAttribute="trailing" constant="14" id="MSb-4E-G0x"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lB5-Sm-6R1" userLabel="Main View">
@@ -194,7 +194,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="selectedTagsListView" destination="jzZ-s1-cpe" id="EFe-qm-YGr"/>
+                        <outlet property="selectedTagsCollectionView" destination="dhD-ZZ-qjj" id="bLB-gd-Jm0"/>
                         <outlet property="tagSearchBar" destination="cM4-ZI-GR0" id="1Ok-xx-9jg"/>
                         <outlet property="tagsContainer" destination="TG6-1v-dEx" id="3pD-t9-dmx"/>
                     </connections>
@@ -430,7 +430,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="795-ce-efN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cia-Us-BYY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Cia-Us-BYY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

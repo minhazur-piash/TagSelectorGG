@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		058D98981E2D253A00DE2B4E /* SelectedTagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 058D98971E2D253A00DE2B4E /* SelectedTagsCollectionViewCell.xib */; };
+		058D989A1E2D265A00DE2B4E /* SelectedTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058D98991E2D265A00DE2B4E /* SelectedTagsCollectionViewCell.swift */; };
 		059678F81E2BCEB400ABBE91 /* SuggestedTagSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059678F71E2BCEB400ABBE91 /* SuggestedTagSelectionViewController.swift */; };
 		059678FA1E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059678F91E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift */; };
 		059678FC1E2BD38200ABBE91 /* SearchedTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059678FB1E2BD38200ABBE91 /* SearchedTagsTableViewCell.swift */; };
@@ -61,6 +63,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		058D98971E2D253A00DE2B4E /* SelectedTagsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedTagsCollectionViewCell.xib; sourceTree = "<group>"; };
+		058D98991E2D265A00DE2B4E /* SelectedTagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedTagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		059678F71E2BCEB400ABBE91 /* SuggestedTagSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedTagSelectionViewController.swift; sourceTree = "<group>"; };
 		059678F91E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchedTagSelectionViewController.swift; sourceTree = "<group>"; };
 		059678FB1E2BD38200ABBE91 /* SearchedTagsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchedTagsTableViewCell.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				059678F71E2BCEB400ABBE91 /* SuggestedTagSelectionViewController.swift */,
 				059678F91E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift */,
 				059678FB1E2BD38200ABBE91 /* SearchedTagsTableViewCell.swift */,
+				058D98971E2D253A00DE2B4E /* SelectedTagsCollectionViewCell.xib */,
+				058D98991E2D265A00DE2B4E /* SelectedTagsCollectionViewCell.swift */,
 			);
 			path = TagSelector;
 			sourceTree = "<group>";
@@ -326,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058D98981E2D253A00DE2B4E /* SelectedTagsCollectionViewCell.xib in Resources */,
 				14706A341E2CDD210001408D /* CustomTagView.xib in Resources */,
 				146692681E27614100184699 /* LaunchScreen.storyboard in Resources */,
 				146692651E27614100184699 /* Assets.xcassets in Resources */,
@@ -422,6 +429,7 @@
 				146A11911E2B66600032896C /* Color.swift in Sources */,
 				059678FA1E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift in Sources */,
 				14706A361E2CEEF50001408D /* SuggestedTagsCollectionViewCell.swift in Sources */,
+				058D989A1E2D265A00DE2B4E /* SelectedTagsCollectionViewCell.swift in Sources */,
 				140C4E0F1E2BA01B00167D79 /* TagsCollectionViewController.swift in Sources */,
 				146692601E27614100184699 /* ViewController.swift in Sources */,
 				1466925E1E27614100184699 /* AppDelegate.swift in Sources */,
