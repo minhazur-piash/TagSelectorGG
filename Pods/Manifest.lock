@@ -1,0 +1,15 @@
+PODS:
+  - Presentr (1.1.0)
+  - TTGTagCollectionView (1.3.0)
+
+DEPENDENCIES:
+  - Presentr
+  - TTGTagCollectionView
+
+SPEC CHECKSUMS:
+  Presentr: e73439be1cba3ad0651b18c58d77238bbacce59c
+  TTGTagCollectionView: 8bbac8cf3a29356a6d0ee47350eb0a5454501f70
+
+PODFILE CHECKSUM: 30388eb3e79e826aed3817ab5a41751bb3f73f8e
+
+COCOAPODS: 1.1.1

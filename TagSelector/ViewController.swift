@@ -7,19 +7,57 @@
 //
 
 import UIKit
+import Presentr
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, TranslateControllerDelegate {
+    
+    var viewController:UIViewController?
+    
+    let presenter: Presentr = {
+        let width = ModalSize.full
+        let height = ModalSize.custom(size: 600.0)
+        let center = ModalCenterPosition.bottomCenter
+        
+        let presenter = Presentr(presentationType: PresentationType.custom(width: width, height: height, center: center))
+        presenter.transitionType = .coverHorizontalFromRight // Optional
+        presenter.transitionType = .coverHorizontalFromLeft
+        presenter.transitionType = .crossDissolve
+        presenter.dismissAnimated = true
+        return presenter
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func runTagSelector(_ sender: Any) {
+        viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TagSelectorViewConroller") as UIViewController
+        (viewController as! TagSelectorViewConroller).translateControllerDelegate = self
+        customPresentViewController(presenter, viewController: viewController!, animated: true, completion: nil)
+    }
+    
+    func translate() {
+        debugPrint("will translate")
+        
+        
+        
+        
+        
+        
+        
+//        viewController?.view.transform = CGAffineTransform( translationX: 0.0, y: 200.0 )
+//        
+//        UIView.animate(withDuration: 0.5, delay: 1.2, options: [], animations: {
+//            self.viewController?.view.frame = CGRect(x: -90, y: -90, width: 100, height: 100)
+//        }, completion: nil)
+        
+//        customPresentViewController(presenter2, viewController: viewController, animated: true, completion: nil)
+    }
+    
 }
 
