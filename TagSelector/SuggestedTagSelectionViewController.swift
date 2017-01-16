@@ -16,6 +16,7 @@ class SuggestedTagSelectionViewController: UIViewController, UICollectionViewDat
     
     @IBOutlet weak var suggestedTagsCollectionView: UICollectionView!
     fileprivate var tags = ["MANGO", "APPLE", "BANANA", "FRUITS", "MANGO", "FRUITS", "ORANGE", "DUMMY", "TEXT"]
+    var selectedTags: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +42,29 @@ class SuggestedTagSelectionViewController: UIViewController, UICollectionViewDat
 //        cell.suggestedTagView.isSelected = true
         cell.suggestedTagView.highlightedBackgroundColor = UIColor.blue
         cell.suggestedTagView.selectedBackgroundColor = UIColor.green
+        cell.suggestedTagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         
         
         return cell
         
     }
+    
+    
+    func tagPressed(_ sender: TagView!) {
+        sender.onTap?(sender)
+        if isAlreadySelected(tag: sender.currentTitle) {
+            sender.isSelected = false
+            tags.remove(at: <#T##Int#>)
+        }
+        sender.isSelected = true
+//        delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
+    }
+    
+    func isAlreadySelected(tag: String) -> Bool {
+        return tags.contains(tag)
+    }
+
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: widthForString(text: tags[indexPath.row], font: UIFont.systemFont(ofSize: 16), height: 16) + 35, height: 33)
