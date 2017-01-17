@@ -9,6 +9,7 @@
 import Foundation
 
 class TaskUtils {
+    
     static func matches(for regex: String, in text: String) -> [String] {
         do {
             let regex = try NSRegularExpression(pattern: regex)
@@ -20,4 +21,14 @@ class TaskUtils {
             return []
         }
     }
+    
+    static func isEmpty(text: String?) -> Bool {
+        if text == nil || text!.isEmpty {
+            return true
+        }
+        
+        return false
+    }
+    
+    
 }

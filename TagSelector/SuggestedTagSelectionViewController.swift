@@ -82,7 +82,6 @@ extension SuggestedTagSelectionViewController: UICollectionViewDataSource {
         cell.suggestedTagView.selectedBackgroundColor = UIColor.green
         cell.suggestedTagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         
-        
         return cell
     }
 

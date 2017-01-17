@@ -104,8 +104,11 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     }
     
     
+    //MARK:- searbar delegate methods
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         translateControllerDelegate.translate()
+        
+        addEventToSearchbarClearButton(view: tagSearchBar)
         
         remove(asChildViewController: suggestedTagSelectionViewController)
         add(asChildViewController: searchedTagSelectionViewController)
@@ -116,11 +119,28 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
             (self.childViewControllers[0] as! TagSearchDelegate).searchTag(fitlerText: searchText)
         }
         
+        addEventToSearchbarClearButton(view: tagSearchBar)
+        
         controlAccessoryView()
     }
     
+    func addEventToSearchbarClearButton(view: UIView) {
+        if view is UIButton {
+            debugPrint("===> found button")
+            return
+        } else if view.subviews.count < 1 {
+            return
+        }
+        
+        for aView in view.subviews {
+            addEventToSearchbarClearButton(view: aView)
+        }
+    }
+    
+   
+    
     func controlAccessoryView() {
-        guard tagSearchBar.text != nil else {
+        if TaskUtils.isEmpty(text: tagSearchBar.text) {
             tagSearchBar.inputAccessoryView = nil
             tagSearchBar.reloadInputViews()
             return
@@ -163,8 +183,6 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         selectedTags.remove(at: selectedTags.index(of: tag)!)
         selectedTagsCollectionView.reloadData()
     }
-    
-   
     
 }
 

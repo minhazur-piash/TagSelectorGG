@@ -44,7 +44,7 @@ class SearchedTagSelectionViewController: UIViewController, TagSearchDelegate {
 
 extension SearchedTagSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isEmpty(text: toFilterText) {
+        if TaskUtils.isEmpty(text: toFilterText) {
             return items.count
         } else {
             return filteredItems.count
@@ -70,17 +70,9 @@ extension SearchedTagSelectionViewController: UITableViewDataSource {
         }
     }
     
-    func isEmpty(text: String?) -> Bool {
-        if text == nil || text!.isEmpty {
-            return true
-        }
-        
-        return false
-    }
-    
     func getCurrentTags() -> [String] {
         var itemsToShow: [String] = []
-        if isEmpty(text: toFilterText) {
+        if TaskUtils.isEmpty(text: toFilterText) {
             itemsToShow = items
         } else {
             itemsToShow = filteredItems
