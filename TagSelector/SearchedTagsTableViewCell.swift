@@ -11,6 +11,7 @@ import UIKit
 class SearchedTagsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var addTagButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

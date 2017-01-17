@@ -10,7 +10,7 @@ import UIKit
 import TTGTagCollectionView
 
 
-class SuggestedTagSelectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class SuggestedTagSelectionViewController: UIViewController {
 
     var tagManageDelegate: TagManageDelegate?
     
@@ -24,30 +24,13 @@ class SuggestedTagSelectionViewController: UIViewController, UICollectionViewDat
         suggestedTagsCollectionView.dataSource = self
         suggestedTagsCollectionView.delegate = self
         
-        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+//        layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        layout.minimumInteritemSpacing = 3
+        layout.minimumLineSpacing = 10
+        suggestedTagsCollectionView.collectionViewLayout = layout
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tags.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SuggestedTagsCollectionViewCell", for: indexPath) as! SuggestedTagsCollectionViewCell
-        cell.suggestedTagView.setTitle(tags[indexPath.row], for: .normal)
-        cell.suggestedTagView.textFont = UIFont.systemFont(ofSize: 16)
-        cell.suggestedTagView.paddingX = 15
-        cell.suggestedTagView.textColor = UIColor.gray
-        cell.suggestedTagView.tagBackgroundColor = UIColor.white
-        cell.suggestedTagView.selectedTextColor = UIColor.blue
-//        cell.suggestedTagView.isSelected = true
-        cell.suggestedTagView.highlightedBackgroundColor = UIColor.blue
-        cell.suggestedTagView.selectedBackgroundColor = UIColor.green
-        cell.suggestedTagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
-        
-        
-        return cell
-        
-    }
     
     func isAlreadySelected(tag: String) -> Bool {
         return selectedTags.contains(tag)
@@ -67,19 +50,45 @@ class SuggestedTagSelectionViewController: UIViewController, UICollectionViewDat
         } else {
             sender.isSelected = true
             selectedTags.append(sender.currentTitle!)
+            
             if let tagManager = tagManageDelegate {
                 tagManager.tagSelected(tag: sender.currentTitle!)
             }
-
         }
-        
-//        delegate?.tagPressed?(sender.currentTitle ?? "", tagView: sender, sender: self)
     }
     
-   
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+  
+}
 
+extension SuggestedTagSelectionViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tags.count
+    }
     
-    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SuggestedTagsCollectionViewCell", for: indexPath) as! SuggestedTagsCollectionViewCell
+        cell.suggestedTagView.setTitle(tags[indexPath.row], for: .normal)
+        cell.suggestedTagView.textFont = UIFont.systemFont(ofSize: 16)
+        cell.suggestedTagView.paddingX = 15
+        cell.suggestedTagView.textColor = UIColor.gray
+        cell.suggestedTagView.tagBackgroundColor = UIColor.white
+        cell.suggestedTagView.selectedTextColor = UIColor.blue
+        cell.suggestedTagView.highlightedBackgroundColor = UIColor.blue
+        cell.suggestedTagView.selectedBackgroundColor = UIColor.green
+        cell.suggestedTagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
+        
+        
+        return cell
+    }
+
+}
+
+extension SuggestedTagSelectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = widthForString(text: tags[indexPath.row], font: UIFont.systemFont(ofSize: 16), height: 16) + 30
         return CGSize(width: cellWidth, height: 33)
@@ -96,10 +105,4 @@ class SuggestedTagSelectionViewController: UIViewController, UICollectionViewDat
         return label.frame.width
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-  
 }

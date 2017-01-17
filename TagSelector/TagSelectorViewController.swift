@@ -48,6 +48,7 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         
         // Instantiate View Controller
         var viewController = storyboard.instantiateViewController(withIdentifier: "SearchedTagSelectionViewController") as! SearchedTagSelectionViewController
+        viewController.tagManagerDelegate = self
         
         // Add View Controller as Child View Controller
         self.add(asChildViewController: viewController)

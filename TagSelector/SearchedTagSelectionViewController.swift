@@ -16,7 +16,7 @@ class SearchedTagSelectionViewController: UIViewController, TagSearchDelegate {
     fileprivate var filteredItems: [String] = []
     fileprivate var toFilterText: String?
     
-    var tagManager: TagManageDelegate?
+    var tagManagerDelegate: TagManageDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,16 +52,22 @@ extension SearchedTagSelectionViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var itemsToShow: [String] = []
-        if isEmpty(text: toFilterText) {
-            itemsToShow = items
-        } else {
-            itemsToShow = filteredItems
-        }
+        var itemsToShow = getCurrentTags()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchedTagsTableViewCell", for: indexPath) as! SearchedTagsTableViewCell
         cell.tagLabel.text = itemsToShow[indexPath.row]
+        
+        cell.addTagButton.tag = indexPath.row
+        cell.addTagButton.addTarget(self, action: #selector(addTagButtonPressed(_:)), for: .touchUpInside)
         return cell
+    }
+    
+    func addTagButtonPressed(_ sender: UIButton) {
+        let addedTag = getCurrentTags()[sender.tag]
+        
+        if let tagManager = tagManagerDelegate {
+            tagManager.tagSelected(tag: addedTag)
+        }
     }
     
     func isEmpty(text: String?) -> Bool {
@@ -70,5 +76,17 @@ extension SearchedTagSelectionViewController: UITableViewDataSource {
         }
         
         return false
+    }
+    
+    func getCurrentTags() -> [String] {
+        var itemsToShow: [String] = []
+        if isEmpty(text: toFilterText) {
+            itemsToShow = items
+        } else {
+            itemsToShow = filteredItems
+        }
+        
+        return itemsToShow
+
     }
 }
