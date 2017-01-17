@@ -115,8 +115,44 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         if self.childViewControllers[0] is SearchedTagSelectionViewController {
             (self.childViewControllers[0] as! TagSearchDelegate).searchTag(fitlerText: searchText)
         }
+        
+        controlAccessoryView()
     }
+    
+    func controlAccessoryView() {
+        guard tagSearchBar.text != nil else {
+            tagSearchBar.inputAccessoryView = nil
+            tagSearchBar.reloadInputViews()
+            return
+        }
+        
+        tagSearchBar.inputAccessoryView = getAccessoryView(searchText: tagSearchBar.text!)
+        tagSearchBar.reloadInputViews()
+    }
+    
+    func getAccessoryView(searchText: String) -> UIView {
+        let view = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! SearchTagAccessoryView
+        
+        view.backgroundColor = UIColor.white
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.4
+        view.layer.shadowOffset = CGSize.zero
+        view.layer.shadowRadius = 4
 
+        view.addTagButton.setTitle("+ Add \"" + searchText + "\"", for: .normal)
+        
+        view.addTagButton.setTitleColor(Color.hexStringToUIColor(hex: Color.appPrimaryColorLight), for: .normal)
+        view.addTagButton.addTarget(self, action: #selector(addTagPressed(_:)), for: .touchUpInside)
+        
+        return view
+
+    }
+    
+    func addTagPressed(_ sender: UIButton) {
+        debugPrint("pressed on " + sender.currentTitle!)
+        let tagText = TaskUtils.matches(for: "\".*\"", in: sender.currentTitle!)[0].replacingOccurrences(of: "\"", with: "")
+        tagSelected(tag: tagText)
+    }
     
     func tagSelected(tag: String) {
         selectedTags.append(tag)
@@ -127,6 +163,8 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         selectedTags.remove(at: selectedTags.index(of: tag)!)
         selectedTagsCollectionView.reloadData()
     }
+    
+   
     
 }
 
@@ -167,7 +205,6 @@ extension TagSelectorViewConroller: UICollectionViewDataSource {
 }
 
 extension TagSelectorViewConroller: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = widthForString(text: selectedTags[indexPath.row], font: UIFont.systemFont(ofSize: 14), height: 14) + 50
         return CGSize(width: cellWidth, height: 30)

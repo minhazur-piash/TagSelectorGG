@@ -15,6 +15,8 @@
 		140C4E0D1E2B7DE000167D79 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C4E0C1E2B7DE000167D79 /* CustomSearchBar.swift */; };
 		140C4E0F1E2BA01B00167D79 /* TagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C4E0E1E2BA01B00167D79 /* TagsCollectionViewController.swift */; };
 		140C4E111E2BA05A00167D79 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C4E101E2BA05A00167D79 /* TagCollectionViewCell.swift */; };
+		140F64A51E2DF33A008BCF48 /* SearchTagAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140F64A41E2DF33A008BCF48 /* SearchTagAccessoryView.swift */; };
+		140F64A71E2E05B0008BCF48 /* TaskUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140F64A61E2E05B0008BCF48 /* TaskUtils.swift */; };
 		1466925E1E27614100184699 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466925D1E27614100184699 /* AppDelegate.swift */; };
 		146692601E27614100184699 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466925F1E27614100184699 /* ViewController.swift */; };
 		146692631E27614100184699 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146692611E27614100184699 /* Main.storyboard */; };
@@ -27,7 +29,7 @@
 		146A118D1E2B66200032896C /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A118A1E2B66200032896C /* CloseButton.swift */; };
 		146A118E1E2B66200032896C /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A118C1E2B66200032896C /* TagListView.swift */; };
 		146A11911E2B66600032896C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A11901E2B66600032896C /* Color.swift */; };
-		14706A341E2CDD210001408D /* CustomTagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14706A331E2CDD210001408D /* CustomTagView.xib */; };
+		14706A341E2CDD210001408D /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14706A331E2CDD210001408D /* CustomView.xib */; };
 		14706A361E2CEEF50001408D /* SuggestedTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14706A351E2CEEF50001408D /* SuggestedTagsCollectionViewCell.swift */; };
 		CC168B04200D163CB673DA89 /* Pods_TagSelector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE12723B6AC86E5EF1061AC7 /* Pods_TagSelector.framework */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,8 @@
 		140C4E0C1E2B7DE000167D79 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		140C4E0E1E2BA01B00167D79 /* TagsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewController.swift; sourceTree = "<group>"; };
 		140C4E101E2BA05A00167D79 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		140F64A41E2DF33A008BCF48 /* SearchTagAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTagAccessoryView.swift; sourceTree = "<group>"; };
+		140F64A61E2E05B0008BCF48 /* TaskUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskUtils.swift; sourceTree = "<group>"; };
 		1466925A1E27614100184699 /* TagSelector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagSelector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1466925D1E27614100184699 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1466925F1E27614100184699 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +95,7 @@
 		146A118B1E2B66200032896C /* TagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagListView.h; sourceTree = "<group>"; };
 		146A118C1E2B66200032896C /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		146A11901E2B66600032896C /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		14706A331E2CDD210001408D /* CustomTagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomTagView.xib; path = ../CustomTagView.xib; sourceTree = "<group>"; };
+		14706A331E2CDD210001408D /* CustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomView.xib; path = ../CustomView.xib; sourceTree = "<group>"; };
 		14706A351E2CEEF50001408D /* SuggestedTagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestedTagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8C1AA8F6892FDC282D86FD8A /* Pods-TagSelector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagSelector.release.xcconfig"; path = "Pods/Target Support Files/Pods-TagSelector/Pods-TagSelector.release.xcconfig"; sourceTree = "<group>"; };
 		922F0FB6DD898531095A1B07 /* Pods-TagSelector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagSelector.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TagSelector/Pods-TagSelector.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,7 +154,9 @@
 		1466925C1E27614100184699 /* TagSelector */ = {
 			isa = PBXGroup;
 			children = (
-				14706A331E2CDD210001408D /* CustomTagView.xib */,
+				14706A331E2CDD210001408D /* CustomView.xib */,
+				140F64A61E2E05B0008BCF48 /* TaskUtils.swift */,
+				140F64A41E2DF33A008BCF48 /* SearchTagAccessoryView.swift */,
 				146A11881E2B660C0032896C /* TagView.swift */,
 				146A118F1E2B66600032896C /* TagListView */,
 				1466925D1E27614100184699 /* AppDelegate.swift */,
@@ -333,7 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				058D98981E2D253A00DE2B4E /* SelectedTagsCollectionViewCell.xib in Resources */,
-				14706A341E2CDD210001408D /* CustomTagView.xib in Resources */,
+				14706A341E2CDD210001408D /* CustomView.xib in Resources */,
 				146692681E27614100184699 /* LaunchScreen.storyboard in Resources */,
 				146692651E27614100184699 /* Assets.xcassets in Resources */,
 				146692631E27614100184699 /* Main.storyboard in Resources */,
@@ -423,6 +429,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				140F64A51E2DF33A008BCF48 /* SearchTagAccessoryView.swift in Sources */,
+				140F64A71E2E05B0008BCF48 /* TaskUtils.swift in Sources */,
 				146A118D1E2B66200032896C /* CloseButton.swift in Sources */,
 				059678FC1E2BD38200ABBE91 /* SearchedTagsTableViewCell.swift in Sources */,
 				146A118E1E2B66200032896C /* TagListView.swift in Sources */,

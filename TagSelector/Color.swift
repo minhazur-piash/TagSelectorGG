@@ -10,6 +10,7 @@ import UIKit
 
 class Color {
     static let suggestedTagSelectionBackgroundColor = "#1EACB8"
+    static let appPrimaryColorLight = "#08ACB9"
     
     
     static func hexStringToUIColor (hex:String) -> UIColor {
