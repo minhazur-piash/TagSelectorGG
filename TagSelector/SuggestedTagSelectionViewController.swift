@@ -72,15 +72,18 @@ extension SuggestedTagSelectionViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SuggestedTagsCollectionViewCell", for: indexPath) as! SuggestedTagsCollectionViewCell
-        cell.suggestedTagView.setTitle(tags[indexPath.row], for: .normal)
-        cell.suggestedTagView.textFont = UIFont.systemFont(ofSize: 16)
-        cell.suggestedTagView.paddingX = 15
-        cell.suggestedTagView.textColor = UIColor.gray
-        cell.suggestedTagView.tagBackgroundColor = UIColor.white
-        cell.suggestedTagView.selectedTextColor = UIColor.blue
-        cell.suggestedTagView.highlightedBackgroundColor = UIColor.blue
-        cell.suggestedTagView.selectedBackgroundColor = UIColor.green
-        cell.suggestedTagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
+        
+        let aTagView = cell.suggestedTagView!
+        aTagView.setTitle(tags[indexPath.row], for: .normal)
+        aTagView.textFont = UIFont.systemFont(ofSize: 14)
+        aTagView.paddingX = 15
+        aTagView.textColor = Color.hexStringToUIColor(hex: Color.suggestedTagTextColor)
+        aTagView.tagBackgroundColor = UIColor.white
+        aTagView.highlightedBackgroundColor = UIColor.blue
+        
+        aTagView.selectedBackgroundColor = Color.hexStringToUIColor(hex: Color.appPrimaryColorLight)
+        aTagView.selectedTextColor = UIColor.white
+        aTagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         
         return cell
     }

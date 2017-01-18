@@ -195,17 +195,21 @@ extension TagSelectorViewConroller: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectedTagsCollectionViewCell", for: indexPath) as! SelectedTagsCollectionViewCell
-        cell.selectedTagView.setTitle(selectedTags[indexPath.row], for: .normal)
-        cell.selectedTagView.enableRemoveButton = true
-        cell.selectedTagView.cornerRadius = 15
-        cell.selectedTagView.textFont = UIFont.systemFont(ofSize: 14)
-        cell.selectedTagView.paddingX = 10
-        cell.selectedTagView.textColor = UIColor.white
-        cell.selectedTagView.tagBackgroundColor = UIColor.blue
-        cell.selectedTagView.removeButtonOvalSize = 22
-        cell.selectedTagView.removeButtonIconSize = 12
-        cell.selectedTagView.removeIconLineWidth = 1
-        cell.selectedTagView.removeButton.addTarget(self, action: #selector(tagRemovePressed(_:)), for: .touchUpInside)
+        
+        let tagView = cell.selectedTagView!
+        tagView.setTitle(selectedTags[indexPath.row], for: .normal)
+        tagView.enableRemoveButton = true
+        tagView.cornerRadius = 15
+        tagView.textFont = UIFont.systemFont(ofSize: 14)
+        tagView.paddingX = 10
+        tagView.textColor = UIColor.white
+        tagView.tagBackgroundColor = Color.hexStringToUIColor(hex: Color.appPrimaryColorLight)
+       
+        tagView.removeButtonOvalSize = 22
+        tagView.removeButtonOvalColor = Color.hexStringToUIColor(hex: Color.appPrimaryColorDark)
+        tagView.removeButtonIconSize = 8
+        tagView.removeIconLineWidth = 1
+        tagView.removeButton.addTarget(self, action: #selector(tagRemovePressed(_:)), for: .touchUpInside)
         
         return cell
     }

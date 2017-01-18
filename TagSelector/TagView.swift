@@ -117,6 +117,7 @@ open class TagView: UIButton {
     
     // MARK: remove button
     
+ 
     let removeButton = CloseButton()
     
     

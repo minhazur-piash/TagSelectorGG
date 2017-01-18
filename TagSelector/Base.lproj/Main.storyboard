@@ -23,14 +23,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CN-ES-eQt">
-                                <rect key="frame" x="164.5" y="318.5" width="46" height="30"/>
+                                <rect key="frame" x="165" y="319" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="runTagSelector:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sPU-8u-Sae"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t5m-e4-261" customClass="TTGTextTagCollectionView">
-                                <rect key="frame" x="16" y="348.5" width="343" height="318.5"/>
+                                <rect key="frame" x="16" y="349" width="343" height="318"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -437,7 +437,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="795-ce-efN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Cia-Us-BYY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cia-Us-BYY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
