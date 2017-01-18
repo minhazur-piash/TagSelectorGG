@@ -22,6 +22,7 @@ protocol TagManageDelegate {
 }
 
 class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManageDelegate {
+    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var tagSearchBar: CustomSearchBar!
     @IBOutlet weak var tagsContainer: UIView!
     @IBOutlet weak var selectedTagsCollectionView: UICollectionView!
@@ -62,6 +63,8 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        doneButton.setTitleColor(Color.hexStringToUIColor(hex: Color.appPrimaryColorLight), for: .normal)
+        
         tagSearchBar.delegate = self
         
         selectedTagsCollectionView.dataSource = self
@@ -69,7 +72,6 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         
         remove(asChildViewController: searchedTagSelectionViewController)
         add(asChildViewController: suggestedTagSelectionViewController)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -108,8 +110,6 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         translateControllerDelegate.translate()
         
-        addEventToSearchbarClearButton(view: tagSearchBar)
-        
         remove(asChildViewController: suggestedTagSelectionViewController)
         add(asChildViewController: searchedTagSelectionViewController)
     }
@@ -119,24 +119,8 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
             (self.childViewControllers[0] as! TagSearchDelegate).searchTag(fitlerText: searchText)
         }
         
-        addEventToSearchbarClearButton(view: tagSearchBar)
-        
         controlAccessoryView()
     }
-    
-    func addEventToSearchbarClearButton(view: UIView) {
-        if view is UIButton {
-            debugPrint("===> found button")
-            return
-        } else if view.subviews.count < 1 {
-            return
-        }
-        
-        for aView in view.subviews {
-            addEventToSearchbarClearButton(view: aView)
-        }
-    }
-    
    
     
     func controlAccessoryView() {
@@ -151,18 +135,18 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     }
     
     func getAccessoryView(searchText: String) -> UIView {
-        let view = UINib(nibName: "CustomView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! SearchTagAccessoryView
+        let addTagButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 45))
+        addTagButton.setTitle("+ Add \"" + searchText + "\"", for: .normal)
+        addTagButton.setTitleColor(Color.hexStringToUIColor(hex: Color.appPrimaryColorLight), for: .normal)
+        addTagButton.addTarget(self, action: #selector(addTagPressed(_:)), for: .touchUpInside)
         
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 45))
         view.backgroundColor = UIColor.white
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.4
         view.layer.shadowOffset = CGSize.zero
         view.layer.shadowRadius = 4
-
-        view.addTagButton.setTitle("+ Add \"" + searchText + "\"", for: .normal)
-        
-        view.addTagButton.setTitleColor(Color.hexStringToUIColor(hex: Color.appPrimaryColorLight), for: .normal)
-        view.addTagButton.addTarget(self, action: #selector(addTagPressed(_:)), for: .touchUpInside)
+        view.addSubview(addTagButton)
         
         return view
 
@@ -183,7 +167,6 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         selectedTags.remove(at: selectedTags.index(of: tag)!)
         selectedTagsCollectionView.reloadData()
     }
-    
 }
 
 

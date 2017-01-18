@@ -22,6 +22,7 @@ class SearchedTagSelectionViewController: UIViewController, TagSearchDelegate {
         super.viewDidLoad()
 
         searchedTagsTableView.dataSource = self
+        searchedTagsTableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 150, right: 0) //add more scrollable spaces below
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,17 +31,15 @@ class SearchedTagSelectionViewController: UIViewController, TagSearchDelegate {
     }
     
     func searchTag(fitlerText filterText: String) {
-        debugPrint("to filter text: " + filterText)
-        
         toFilterText = filterText
         
         filteredItems = items.filter { (aItem) -> Bool in
             return aItem.localizedCaseInsensitiveContains(toFilterText!)
         }
         searchedTagsTableView.reloadData()
-        
     }
 }
+
 
 extension SearchedTagSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,6 +78,5 @@ extension SearchedTagSelectionViewController: UITableViewDataSource {
         }
         
         return itemsToShow
-
     }
 }

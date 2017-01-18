@@ -69,13 +69,14 @@
                                 <rect key="frame" x="16" y="20" width="343" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXK-Cc-kwc">
-                                        <rect key="frame" x="0.0" y="12" width="71" height="20"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <rect key="frame" x="0.0" y="12" width="74.5" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-EG-aao">
-                                        <rect key="frame" x="314" y="7" width="37" height="30"/>
+                                        <rect key="frame" x="310" y="5.5" width="41" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Done">
                                             <color key="titleColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -194,6 +195,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="E5n-EG-aao" id="Kjj-3l-kYc"/>
                         <outlet property="selectedTagsCollectionView" destination="dhD-ZZ-qjj" id="bLB-gd-Jm0"/>
                         <outlet property="tagSearchBar" destination="cM4-ZI-GR0" id="1Ok-xx-9jg"/>
                         <outlet property="tagsContainer" destination="TG6-1v-dEx" id="3pD-t9-dmx"/>
@@ -437,7 +439,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="795-ce-efN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cia-Us-BYY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Cia-Us-BYY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

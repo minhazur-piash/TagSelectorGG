@@ -73,6 +73,7 @@ extension SuggestedTagSelectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SuggestedTagsCollectionViewCell", for: indexPath) as! SuggestedTagsCollectionViewCell
         
+        
         let aTagView = cell.suggestedTagView!
         aTagView.setTitle(tags[indexPath.row], for: .normal)
         aTagView.textFont = UIFont.systemFont(ofSize: 14)
