@@ -138,7 +138,7 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         let addTagButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 45))
         addTagButton.setTitle("+ Add \"" + searchText + "\"", for: .normal)
         addTagButton.setTitleColor(Color.hexStringToUIColor(hex: Color.appPrimaryColorLight), for: .normal)
-        addTagButton.addTarget(self, action: #selector(addTagPressed(_:)), for: .touchUpInside)
+        addTagButton.addTarget(self, action: #selector(addTagButtonPressed(_:)), for: .touchUpInside)
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 45))
         view.backgroundColor = UIColor.white
@@ -152,7 +152,7 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
 
     }
     
-    func addTagPressed(_ sender: UIButton) {
+    func addTagButtonPressed(_ sender: UIButton) {
         debugPrint("pressed on " + sender.currentTitle!)
         let tagText = TaskUtils.matches(for: "\".*\"", in: sender.currentTitle!)[0].replacingOccurrences(of: "\"", with: "")
         tagSelected(tag: tagText)
