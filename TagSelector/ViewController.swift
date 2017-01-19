@@ -10,7 +10,7 @@ import UIKit
 import Presentr
 import TTGTagCollectionView
 
-class ViewController: UIViewController, TranslateControllerDelegate {
+class ViewController: UIViewController, ScaleTagSelectorControllerDelegate {
     
     var tagSelectorVC: UIViewController?
     var modalViewPadding: CGFloat!
@@ -29,19 +29,17 @@ class ViewController: UIViewController, TranslateControllerDelegate {
     
     @IBAction func runTagSelector(_ sender: Any) {
         tagSelectorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TagSelectorViewConroller") as UIViewController
-        (tagSelectorVC as! TagSelectorViewConroller).translateControllerDelegate = self
+        (tagSelectorVC as! TagSelectorViewConroller).scaleDelegate = self
         
         customPresentViewController(getPresentr(), viewController: tagSelectorVC!, animated: true, completion: nil)
     }
     
-    func translate() {
-        debugPrint("will animate presented view....")
+    func scale() {
+        debugPrint("will scale presented view....")
         
         UIView.animate(withDuration: 0.4, delay: 0.01, options: [], animations: {
             self.tagSelectorVC?.view.frame = CGRect(x: 0.0, y: self.modalViewPadding, width: self.view.frame.width, height: self.view.frame.height - self.modalViewPadding)
         }, completion: nil)
-        
-
     }
     
     func getPresentr() -> Presentr {

@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol TranslateControllerDelegate {
-    func translate()
+protocol ScaleTagSelectorControllerDelegate {
+    func scale()
 }
 
 protocol TagSearchDelegate {
@@ -28,6 +28,7 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     @IBOutlet weak var selectedTagsCollectionView: UICollectionView!
     
     fileprivate var selectedTags: [String] = []
+    var scaleDelegate: ScaleTagSelectorControllerDelegate?
     
     private lazy var suggestedTagSelectionViewController: SuggestedTagSelectionViewController = {
         // Load Storyboard
@@ -56,9 +57,6 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         
         return viewController
     }()
-    
-    
-    var translateControllerDelegate: TranslateControllerDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,9 +104,11 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     }
     
     
-    //MARK:- searbar delegate methods
+    //MARK:- searchbar delegate methods
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        translateControllerDelegate.translate()
+        if let delegate = scaleDelegate {
+            delegate.scale()
+        }
         
         remove(asChildViewController: suggestedTagSelectionViewController)
         add(asChildViewController: searchedTagSelectionViewController)
@@ -170,6 +170,9 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     func tagSelected(tag: String) {
         selectedTags.append(tag)
         selectedTagsCollectionView.reloadData()
+        
+        // auto scroll collectionview item to right when new item added and content view is out of scrollable area
+        selectedTagsCollectionView.scrollToItem(at: IndexPath(row: selectedTags.count - 1, section: 0), at: UICollectionViewScrollPosition.right, animated: true)
     }
     
     func tagRemoved(tag: String) {
