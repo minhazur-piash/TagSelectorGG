@@ -22,14 +22,12 @@ class SearchedTagSelectionViewController: UIViewController, TagSearchDelegate {
         super.viewDidLoad()
 
         searchedTagsTableView.dataSource = self
-        searchedTagsTableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 150, right: 0) //add more scrollable spaces below
+        searchedTagsTableView.delegate = self
+        
+        //add more scrollable spaces below
+        searchedTagsTableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 150, right: 0)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func searchTag(fitlerText filterText: String) {
         toFilterText = filterText
         
@@ -41,7 +39,8 @@ class SearchedTagSelectionViewController: UIViewController, TagSearchDelegate {
 }
 
 
-extension SearchedTagSelectionViewController: UITableViewDataSource {
+extension SearchedTagSelectionViewController: UITableViewDataSource, UITableViewDelegate {
+    //MARK:- table view data source methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if TaskUtils.isEmpty(text: toFilterText) {
             return items.count
@@ -68,6 +67,16 @@ extension SearchedTagSelectionViewController: UITableViewDataSource {
             tagManager.tagSelected(tag: addedTag)
         }
     }
+    
+    //MARK:- table view delegate methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let addedTag = getCurrentTags()[indexPath.row]
+        
+        if let tagManager = tagManagerDelegate {
+            tagManager.tagSelected(tag: addedTag)
+        }
+    }
+    
     
     func getCurrentTags() -> [String] {
         var itemsToShow: [String] = []
