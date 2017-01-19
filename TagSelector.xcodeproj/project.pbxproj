@@ -12,10 +12,10 @@
 		059678FA1E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059678F91E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift */; };
 		059678FC1E2BD38200ABBE91 /* SearchedTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059678FB1E2BD38200ABBE91 /* SearchedTagsTableViewCell.swift */; };
 		140C4E0D1E2B7DE000167D79 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C4E0C1E2B7DE000167D79 /* CustomSearchBar.swift */; };
-		140C4E0F1E2BA01B00167D79 /* TagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C4E0E1E2BA01B00167D79 /* TagsCollectionViewController.swift */; };
 		140C4E111E2BA05A00167D79 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C4E101E2BA05A00167D79 /* TagCollectionViewCell.swift */; };
 		140F64A51E2DF33A008BCF48 /* SearchTagAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140F64A41E2DF33A008BCF48 /* SearchTagAccessoryView.swift */; };
 		140F64A71E2E05B0008BCF48 /* TaskUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140F64A61E2E05B0008BCF48 /* TaskUtils.swift */; };
+		1451BD6D1E30BC370094A83D /* GGSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1451BD6C1E30BC370094A83D /* GGSObject.swift */; };
 		1466925E1E27614100184699 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466925D1E27614100184699 /* AppDelegate.swift */; };
 		146692601E27614100184699 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1466925F1E27614100184699 /* ViewController.swift */; };
 		146692631E27614100184699 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146692611E27614100184699 /* Main.storyboard */; };
@@ -67,10 +67,10 @@
 		059678F91E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchedTagSelectionViewController.swift; sourceTree = "<group>"; };
 		059678FB1E2BD38200ABBE91 /* SearchedTagsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchedTagsTableViewCell.swift; sourceTree = "<group>"; };
 		140C4E0C1E2B7DE000167D79 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
-		140C4E0E1E2BA01B00167D79 /* TagsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewController.swift; sourceTree = "<group>"; };
 		140C4E101E2BA05A00167D79 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		140F64A41E2DF33A008BCF48 /* SearchTagAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTagAccessoryView.swift; sourceTree = "<group>"; };
 		140F64A61E2E05B0008BCF48 /* TaskUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskUtils.swift; sourceTree = "<group>"; };
+		1451BD6C1E30BC370094A83D /* GGSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GGSObject.swift; sourceTree = "<group>"; };
 		1466925A1E27614100184699 /* TagSelector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagSelector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1466925D1E27614100184699 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1466925F1E27614100184699 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -151,7 +151,6 @@
 				140F64A41E2DF33A008BCF48 /* SearchTagAccessoryView.swift */,
 				146A118F1E2B66600032896C /* Views */,
 				1466925D1E27614100184699 /* AppDelegate.swift */,
-				140C4E0E1E2BA01B00167D79 /* TagsCollectionViewController.swift */,
 				1466925F1E27614100184699 /* ViewController.swift */,
 				146692A11E279EAD00184699 /* TagSelectorViewController.swift */,
 				146692611E27614100184699 /* Main.storyboard */,
@@ -165,6 +164,7 @@
 				059678F91E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift */,
 				059678FB1E2BD38200ABBE91 /* SearchedTagsTableViewCell.swift */,
 				058D98991E2D265A00DE2B4E /* SelectedTagsCollectionViewCell.swift */,
+				1451BD6C1E30BC370094A83D /* GGSObject.swift */,
 			);
 			path = TagSelector;
 			sourceTree = "<group>";
@@ -420,11 +420,11 @@
 				140F64A71E2E05B0008BCF48 /* TaskUtils.swift in Sources */,
 				146A118D1E2B66200032896C /* CloseButton.swift in Sources */,
 				059678FC1E2BD38200ABBE91 /* SearchedTagsTableViewCell.swift in Sources */,
+				1451BD6D1E30BC370094A83D /* GGSObject.swift in Sources */,
 				146A11911E2B66600032896C /* Color.swift in Sources */,
 				059678FA1E2BD24D00ABBE91 /* SearchedTagSelectionViewController.swift in Sources */,
 				14706A361E2CEEF50001408D /* SuggestedTagsCollectionViewCell.swift in Sources */,
 				058D989A1E2D265A00DE2B4E /* SelectedTagsCollectionViewCell.swift in Sources */,
-				140C4E0F1E2BA01B00167D79 /* TagsCollectionViewController.swift in Sources */,
 				146692601E27614100184699 /* ViewController.swift in Sources */,
 				1466925E1E27614100184699 /* AppDelegate.swift in Sources */,
 				146692A21E279EAD00184699 /* TagSelectorViewController.swift in Sources */,
