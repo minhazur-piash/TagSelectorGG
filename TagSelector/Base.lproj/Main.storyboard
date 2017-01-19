@@ -440,7 +440,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="795-ce-efN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Cia-Us-BYY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cia-Us-BYY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -10,13 +10,13 @@ import UIKit
 import TTGTagCollectionView
 
 
-class SuggestedTagSelectionViewController: UIViewController {
+class SuggestedTagSelectionViewController: UIViewController, TagManageDelegate {
 
     var tagManageDelegate: TagManageDelegate?
     
     @IBOutlet weak var suggestedTagsCollectionView: UICollectionView!
-    fileprivate var tags = ["MANGO", "APPLE", "BANANA", "FRUITS", "MANGO", "FRUITS", "ORANGE", "DUMMY", "TEXT"]
-    var selectedTags: [String] = []
+    fileprivate var suggestedTags = TagGenerator.getTags()
+    var selectedTags: [GGSObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,28 +31,38 @@ class SuggestedTagSelectionViewController: UIViewController {
         suggestedTagsCollectionView.collectionViewLayout = layout
     }
     
+    func tagSelected(tag: GGSObject) {}
     
-    func isAlreadySelected(tag: String) -> Bool {
+    func tagRemoved(tag: GGSObject) {
+        if let index = selectedTags.index(of: tag) {
+            selectedTags.remove(at: index)
+        }
+        suggestedTagsCollectionView.reloadData()
+    }
+    
+    
+    func isAlreadySelected(tag: GGSObject) -> Bool {
         return selectedTags.contains(tag)
     }
     
     func tagPressed(_ sender: TagView!) {
         sender.onTap?(sender)
         
-        if isAlreadySelected(tag: sender.currentTitle!) {
+        let selectedTag = suggestedTags[sender.tag]
+        if isAlreadySelected(tag: selectedTag) {
             sender.isSelected = false
-            selectedTags.remove(at: selectedTags.index(of: sender.currentTitle!)!)
+            selectedTags.remove(at: selectedTags.index(of: selectedTag)!)
             
             if let tagManager = tagManageDelegate {
-                tagManager.tagRemoved(tag: sender.currentTitle!)
+                tagManager.tagRemoved(tag: selectedTag)
             }
             
         } else {
             sender.isSelected = true
-            selectedTags.append(sender.currentTitle!)
+            selectedTags.append(selectedTag)
             
             if let tagManager = tagManageDelegate {
-                tagManager.tagSelected(tag: sender.currentTitle!)
+                tagManager.tagSelected(tag: selectedTag)
             }
         }
     }
@@ -62,12 +72,13 @@ class SuggestedTagSelectionViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
   
 }
 
 extension SuggestedTagSelectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tags.count
+        return suggestedTags.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -75,7 +86,14 @@ extension SuggestedTagSelectionViewController: UICollectionViewDataSource {
         
         
         let aTagView = cell.suggestedTagView!
-        aTagView.setTitle(tags[indexPath.row], for: .normal)
+        
+        if isAlreadySelected(tag: suggestedTags[indexPath.row]) {
+            aTagView.isSelected = true
+        } else {
+            aTagView.isSelected = false
+        }
+        
+        aTagView.setTitle(suggestedTags[indexPath.row].name, for: .normal)
         aTagView.textFont = UIFont.systemFont(ofSize: 14)
         aTagView.paddingX = 15
         aTagView.textColor = Color.hexStringToUIColor(hex: Color.suggestedTagTextColor)
@@ -84,6 +102,7 @@ extension SuggestedTagSelectionViewController: UICollectionViewDataSource {
         
         aTagView.selectedBackgroundColor = Color.hexStringToUIColor(hex: Color.appPrimaryColorLight)
         aTagView.selectedTextColor = UIColor.white
+        aTagView.tag = indexPath.row
         aTagView.addTarget(self, action: #selector(tagPressed(_:)), for: .touchUpInside)
         
         return cell
@@ -93,7 +112,7 @@ extension SuggestedTagSelectionViewController: UICollectionViewDataSource {
 
 extension SuggestedTagSelectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = widthForString(text: tags[indexPath.row], font: UIFont.systemFont(ofSize: 16), height: 16) + 30
+        let cellWidth = widthForString(text: suggestedTags[indexPath.row].name, font: UIFont.systemFont(ofSize: 16), height: 16) + 30
         return CGSize(width: cellWidth, height: 33)
     }
     
@@ -107,5 +126,30 @@ extension SuggestedTagSelectionViewController: UICollectionViewDelegateFlowLayou
         label.sizeToFit()
         return label.frame.width
     }
-    
+}
+
+class TagGenerator {
+    static func getTags() -> [GGSObject] {
+        var tags: [GGSObject] = []
+        tags.append(GGSObject(id: 1, name: "PHP"))
+        tags.append(GGSObject(id: 2, name: "JAVA"))
+        tags.append(GGSObject(id: 3, name: "AJAX"))
+        tags.append(GGSObject(id: 4, name: "CSS"))
+        tags.append(GGSObject(id: 5, name: "HTML"))
+        tags.append(GGSObject(id: 6, name: "Photography"))
+        tags.append(GGSObject(id: 7, name: "Typography"))
+        tags.append(GGSObject(id: 8, name: "Swift"))
+        tags.append(GGSObject(id: 9, name: "Erlang"))
+        tags.append(GGSObject(id: 10, name: "XMPP"))
+        tags.append(GGSObject(id: 11, name: "Android"))
+        tags.append(GGSObject(id: 12, name: "Javascript"))
+        tags.append(GGSObject(id: 13, name: "Node"))
+        tags.append(GGSObject(id: 14, name: "Angular"))
+        tags.append(GGSObject(id: 15, name: "SAAS"))
+        tags.append(GGSObject(id: 16, name: "Csharp"))
+        tags.append(GGSObject(id: 17, name: "Unity"))
+        tags.append(GGSObject(id: 18, name: "Laravel"))
+        
+        return tags
+    }
 }

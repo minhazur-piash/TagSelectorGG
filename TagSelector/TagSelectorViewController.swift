@@ -17,8 +17,8 @@ protocol TagSearchDelegate {
 }
 
 protocol TagManageDelegate {
-    func tagSelected(tag: String)
-    func tagRemoved(tag: String)
+    func tagSelected(tag: GGSObject)
+    func tagRemoved(tag: GGSObject)
 }
 
 class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManageDelegate {
@@ -29,7 +29,7 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     @IBOutlet weak var selectedTagsContainerView: UIView!
     @IBOutlet weak var selectionReportLabel: UILabel!
     
-    fileprivate var selectedTags: [String] = []
+    fileprivate var selectedTags: [GGSObject] = []
     var scaleDelegate: ScaleTagSelectorControllerDelegate?
     
     private lazy var suggestedTagSelectionViewController: SuggestedTagSelectionViewController = {
@@ -167,16 +167,16 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     
     func addTagButtonPressed(_ sender: UIButton) {
         debugPrint("pressed on " + sender.currentTitle!)
-        if let tagText = tagSearchBar.text {
-            tagSelected(tag: tagText)
+        let tagText = tagSearchBar.text
+        if TaskUtils.isEmpty(text: tagText){
+                return
         }
+        tagSelected(tag: GGSObject(id: Int(arc4random()), name: tagText!))
+        
     }
     
-    func tagSelected(tag: String) {
-        if TaskUtils.isEmpty(text: tag) {
-            return
-        }
-        
+    func tagSelected(tag: GGSObject) {
+     
         selectedTags.append(tag)
         selectedTagsCollectionView.reloadData()
         selectionReportLabel.isHidden = true
@@ -185,8 +185,13 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         selectedTagsCollectionView.scrollToItem(at: IndexPath(row: selectedTags.count - 1, section: 0), at: UICollectionViewScrollPosition.right, animated: true)
     }
     
-    func tagRemoved(tag: String) {
-        selectedTags.remove(at: selectedTags.index(of: tag)!)
+    func tagRemoved(tag: GGSObject) {
+        if let index = selectedTags.index(of: tag) {
+            selectedTags.remove(at: index)
+        }
+        
+        
+        (suggestedTagSelectionViewController as TagManageDelegate).tagRemoved(tag: tag)
         selectedTagsCollectionView.reloadData()
         
         if selectedTags.count < 1 {
@@ -206,7 +211,7 @@ extension TagSelectorViewConroller: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectedTagsCollectionViewCell", for: indexPath) as! SelectedTagsCollectionViewCell
         
         let tagView = cell.selectedTagView!
-        tagView.setTitle(selectedTags[indexPath.row], for: .normal)
+        tagView.setTitle(selectedTags[indexPath.row].name, for: .normal)
         tagView.enableRemoveButton = true
         tagView.cornerRadius = 15
         tagView.textFont = UIFont.systemFont(ofSize: 14)
@@ -218,26 +223,25 @@ extension TagSelectorViewConroller: UICollectionViewDataSource {
         tagView.removeButtonOvalColor = Color.hexStringToUIColor(hex: Color.appPrimaryColorDark)
         tagView.removeButtonIconSize = 8
         tagView.removeIconLineWidth = 1
+        tagView.removeButton.tag = indexPath.row
         tagView.removeButton.addTarget(self, action: #selector(tagRemovePressed(_:)), for: .touchUpInside)
         
         return cell
     }
     
-    func isAlreadySelected(tag: String) -> Bool {
+    func isAlreadySelected(tag: GGSObject) -> Bool {
         return selectedTags.contains(tag)
     }
     
     func tagRemovePressed(_ closeButton: CloseButton!) {
-        if let tagView = closeButton.tagView {
-            selectedTags.remove(at: selectedTags.index(of: tagView.currentTitle!)!)
-            selectedTagsCollectionView.reloadData()
-        }
+        tagRemoved(tag: selectedTags[closeButton.tag])
+        
     }
 }
 
 extension TagSelectorViewConroller: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = widthForString(text: selectedTags[indexPath.row], font: UIFont.systemFont(ofSize: 14), height: 14) + 50
+        let cellWidth = widthForString(text: selectedTags[indexPath.row].name, font: UIFont.systemFont(ofSize: 14), height: 14) + 50
         return CGSize(width: cellWidth, height: 30)
     }
     

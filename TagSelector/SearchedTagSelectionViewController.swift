@@ -12,8 +12,8 @@ class SearchedTagSelectionViewController: UIViewController, TagSearchDelegate {
 
     @IBOutlet weak var searchedTagsTableView: UITableView!
     
-    fileprivate var items = ["dummy1", "dummy2", "dummy3", "dummy4", "dummy5", "dummyText", "dummy item", "dummy skill", "dummy text", "dummy ep"]
-    fileprivate var filteredItems: [String] = []
+    fileprivate var items = TagGenerator.getTags()
+    fileprivate var filteredItems: [GGSObject] = []
     fileprivate var toFilterText: String?
     
     var tagManagerDelegate: TagManageDelegate?
@@ -32,7 +32,7 @@ class SearchedTagSelectionViewController: UIViewController, TagSearchDelegate {
         toFilterText = filterText
         
         filteredItems = items.filter { (aItem) -> Bool in
-            return aItem.localizedCaseInsensitiveContains(toFilterText!)
+            return aItem.name.localizedCaseInsensitiveContains(toFilterText!)
         }
         searchedTagsTableView.reloadData()
     }
@@ -53,7 +53,7 @@ extension SearchedTagSelectionViewController: UITableViewDataSource, UITableView
         var itemsToShow = getCurrentTags()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchedTagsTableViewCell", for: indexPath) as! SearchedTagsTableViewCell
-        cell.tagLabel.text = itemsToShow[indexPath.row]
+        cell.tagLabel.text = itemsToShow[indexPath.row].name
         
         cell.addTagButton.tag = indexPath.row
         cell.addTagButton.addTarget(self, action: #selector(addTagButtonPressed(_:)), for: .touchUpInside)
@@ -78,8 +78,8 @@ extension SearchedTagSelectionViewController: UITableViewDataSource, UITableView
     }
     
     
-    func getCurrentTags() -> [String] {
-        var itemsToShow: [String] = []
+    func getCurrentTags() -> [GGSObject] {
+        var itemsToShow: [GGSObject] = []
         if TaskUtils.isEmpty(text: toFilterText) {
             itemsToShow = items
         } else {
