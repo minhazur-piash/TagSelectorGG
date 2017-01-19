@@ -12,19 +12,15 @@ import TTGTagCollectionView
 
 class ViewController: UIViewController, TranslateControllerDelegate {
     
-    var viewController:UIViewController?
-    private var skillViewControllerHeight: CGFloat!
-    
-    @IBOutlet weak var textTagCollectionView: TTGTextTagCollectionView!
-    
+    var tagSelectorVC: UIViewController?
+    var modalViewPadding: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        skillViewControllerHeight = UIScreen.main.bounds.height - UIApplication.shared.statusBarFrame.height
-
-        
-        textTagCollectionView.addTags(["this", "is", "text"])
+        let navBarHeight = self.navigationController!.navigationBar.frame.height
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        modalViewPadding = navBarHeight + statusBarHeight
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,34 +28,25 @@ class ViewController: UIViewController, TranslateControllerDelegate {
     }
     
     @IBAction func runTagSelector(_ sender: Any) {
-        viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TagSelectorViewConroller") as UIViewController
-        (viewController as! TagSelectorViewConroller).translateControllerDelegate = self
+        tagSelectorVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TagSelectorViewConroller") as UIViewController
+        (tagSelectorVC as! TagSelectorViewConroller).translateControllerDelegate = self
         
-        customPresentViewController(getPresentr(height: Float(skillViewControllerHeight)), viewController: viewController!, animated: true, completion: nil)
+        customPresentViewController(getPresentr(), viewController: tagSelectorVC!, animated: true, completion: nil)
     }
     
     func translate() {
-        debugPrint("will translate")
+        debugPrint("will animate presented view....")
         
+        UIView.animate(withDuration: 0.4, delay: 0.01, options: [], animations: {
+            self.tagSelectorVC?.view.frame = CGRect(x: 0.0, y: self.modalViewPadding, width: self.view.frame.width, height: self.view.frame.height - self.modalViewPadding)
+        }, completion: nil)
         
-        debugPrint(viewController?.view.frame.debugDescription)
-        viewController?.view.frame = CGRect(x: 0.0, y: 25.0, width: 414.0, height: skillViewControllerHeight)
-        debugPrint(viewController?.view.frame.debugDescription)  //Optional("(0.0, 252.0, 414.0, 600.0)")
-        
-        
-        
-//        viewController?.view.transform = CGAffineTransform( translationX: 0.0, y: 200.0 )
-//        
-//        UIView.animate(withDuration: 0.5, delay: 1.2, options: [], animations: {
-//            self.viewController?.view.frame = CGRect(x: -90, y: -90, width: 100, height: 100)
-//        }, completion: nil)
-        
-//        customPresentViewController(presenter2, viewController: viewController, animated: true, completion: nil)
+
     }
     
-    func getPresentr(height: Float) -> Presentr {
+    func getPresentr() -> Presentr {
         let width = ModalSize.full
-        let height = ModalSize.custom(size: height)
+        let height = ModalSize.custom(size: Float(self.view.frame.height - modalViewPadding))
         let center = ModalCenterPosition.bottomCenter
         
         let presenter = Presentr(presentationType: PresentationType.custom(width: width, height: height, center: center))

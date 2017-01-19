@@ -125,12 +125,20 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     
     func controlAccessoryView() {
         if TaskUtils.isEmpty(text: tagSearchBar.text) {
-            tagSearchBar.inputAccessoryView = nil
-            tagSearchBar.reloadInputViews()
+            hideAccessoryView()
             return
         }
         
+        showAccessoryView()
+    }
+    
+    func showAccessoryView() {
         tagSearchBar.inputAccessoryView = getAccessoryView(searchText: tagSearchBar.text!)
+        tagSearchBar.reloadInputViews()
+    }
+    
+    func hideAccessoryView() {
+        tagSearchBar.inputAccessoryView = nil
         tagSearchBar.reloadInputViews()
     }
     
@@ -149,13 +157,14 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         view.addSubview(addTagButton)
         
         return view
-
+        
     }
     
     func addTagButtonPressed(_ sender: UIButton) {
         debugPrint("pressed on " + sender.currentTitle!)
-        let tagText = TaskUtils.matches(for: "\".*\"", in: sender.currentTitle!)[0].replacingOccurrences(of: "\"", with: "")
-        tagSelected(tag: tagText)
+        if let tagText = tagSearchBar.text {
+            tagSelected(tag: tagText)
+        }
     }
     
     func tagSelected(tag: String) {
