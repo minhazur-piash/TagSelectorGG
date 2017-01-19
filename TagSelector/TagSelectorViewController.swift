@@ -26,6 +26,8 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     @IBOutlet weak var tagSearchBar: CustomSearchBar!
     @IBOutlet weak var tagsContainer: UIView!
     @IBOutlet weak var selectedTagsCollectionView: UICollectionView!
+    @IBOutlet weak var selectedTagsContainerView: UIView!
+    @IBOutlet weak var selectionReportLabel: UILabel!
     
     fileprivate var selectedTags: [String] = []
     var scaleDelegate: ScaleTagSelectorControllerDelegate?
@@ -62,6 +64,9 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         super.viewDidLoad()
         
         doneButton.setTitleColor(Color.hexStringToUIColor(hex: Color.appPrimaryColorLight), for: .normal)
+        selectedTagsContainerView.backgroundColor = Color.hexStringToUIColor(hex: Color.selectedTagContainerBackground)
+        selectionReportLabel.textColor = Color.hexStringToUIColor(hex: Color.slectionReportLabelColor)
+        selectionReportLabel.text = "No tag selected"
         
         tagSearchBar.delegate = self
         
@@ -168,8 +173,13 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     }
     
     func tagSelected(tag: String) {
+        if TaskUtils.isEmpty(text: tag) {
+            return
+        }
+        
         selectedTags.append(tag)
         selectedTagsCollectionView.reloadData()
+        selectionReportLabel.isHidden = true
         
         // auto scroll collectionview item to right when new item added and content view is out of scrollable area
         selectedTagsCollectionView.scrollToItem(at: IndexPath(row: selectedTags.count - 1, section: 0), at: UICollectionViewScrollPosition.right, animated: true)
@@ -178,6 +188,10 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
     func tagRemoved(tag: String) {
         selectedTags.remove(at: selectedTags.index(of: tag)!)
         selectedTagsCollectionView.reloadData()
+        
+        if selectedTags.count < 1 {
+            selectionReportLabel.isHidden = false
+        }
     }
 }
 

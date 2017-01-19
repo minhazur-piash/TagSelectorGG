@@ -82,6 +82,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tl-cM-hsL" userLabel="Selected Tags View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No skills selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIH-Ec-Ufi">
+                                        <rect key="frame" x="0.0" y="13" width="375" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dhD-ZZ-qjj">
                                         <rect key="frame" x="14" y="0.0" width="347" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -124,9 +130,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="7fC-NF-i3b"/>
                                     <constraint firstItem="dhD-ZZ-qjj" firstAttribute="top" secondItem="3tl-cM-hsL" secondAttribute="top" id="8IX-v0-UKR"/>
+                                    <constraint firstItem="eIH-Ec-Ufi" firstAttribute="centerX" secondItem="3tl-cM-hsL" secondAttribute="centerX" id="FIR-ok-e96"/>
                                     <constraint firstAttribute="bottom" secondItem="dhD-ZZ-qjj" secondAttribute="bottom" id="H9M-dO-E1I"/>
                                     <constraint firstItem="dhD-ZZ-qjj" firstAttribute="leading" secondItem="3tl-cM-hsL" secondAttribute="leading" constant="14" id="Lex-6S-nSN"/>
+                                    <constraint firstItem="eIH-Ec-Ufi" firstAttribute="centerY" secondItem="3tl-cM-hsL" secondAttribute="centerY" id="Lfg-Ix-gJ1"/>
                                     <constraint firstAttribute="trailing" secondItem="dhD-ZZ-qjj" secondAttribute="trailing" constant="14" id="MSb-4E-G0x"/>
+                                    <constraint firstItem="eIH-Ec-Ufi" firstAttribute="leading" secondItem="3tl-cM-hsL" secondAttribute="leading" id="i9B-Zs-zhS"/>
+                                    <constraint firstAttribute="trailing" secondItem="eIH-Ec-Ufi" secondAttribute="trailing" id="rkR-p1-cBR"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lB5-Sm-6R1" userLabel="Main View">
@@ -186,13 +196,15 @@
                     <connections>
                         <outlet property="doneButton" destination="E5n-EG-aao" id="Kjj-3l-kYc"/>
                         <outlet property="selectedTagsCollectionView" destination="dhD-ZZ-qjj" id="bLB-gd-Jm0"/>
+                        <outlet property="selectedTagsContainerView" destination="3tl-cM-hsL" id="VJR-B8-nTZ"/>
+                        <outlet property="selectionReportLabel" destination="eIH-Ec-Ufi" id="NvT-ja-jVL"/>
                         <outlet property="tagSearchBar" destination="cM4-ZI-GR0" id="1Ok-xx-9jg"/>
                         <outlet property="tagsContainer" destination="TG6-1v-dEx" id="3pD-t9-dmx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mc1-wn-aUa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1666" y="-548"/>
+            <point key="canvasLocation" x="1664.8" y="-548.27586206896558"/>
         </scene>
         <!--Searched Tag Selection View Controller-->
         <scene sceneID="DTK-n9-ki3">
@@ -214,7 +226,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ji0-bv-D0H" id="mK0-U5-QPD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TcN-hE-4fC">
@@ -428,7 +440,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="795-ce-efN" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cia-Us-BYY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Cia-Us-BYY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

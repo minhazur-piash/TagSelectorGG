@@ -13,6 +13,8 @@ class Color {
     static let appPrimaryColorLight = "#08ACB9"
     static let appPrimaryColorDark = "#137880"
     static let suggestedTagTextColor = "#797979"
+    static let selectedTagContainerBackground = "#F2F2F2"
+    static let slectionReportLabelColor = "#727272"
     
     
     static func hexStringToUIColor (hex:String) -> UIColor {

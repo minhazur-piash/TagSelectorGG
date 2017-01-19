@@ -37,7 +37,7 @@ class ViewController: UIViewController, ScaleTagSelectorControllerDelegate {
     func scale() {
         debugPrint("will scale presented view....")
         
-        UIView.animate(withDuration: 0.4, delay: 0.01, options: [], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.01, options: [], animations: {
             self.tagSelectorVC?.view.frame = CGRect(x: 0.0, y: self.modalViewPadding, width: self.view.frame.width, height: self.view.frame.height - self.modalViewPadding)
         }, completion: nil)
     }
