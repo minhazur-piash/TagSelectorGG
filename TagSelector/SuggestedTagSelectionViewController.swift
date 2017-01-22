@@ -25,7 +25,6 @@ class SuggestedTagSelectionViewController: UIViewController, TagManageDelegate {
         suggestedTagsCollectionView.delegate = self
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-//        layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
         layout.minimumInteritemSpacing = 3
         layout.minimumLineSpacing = 10
         suggestedTagsCollectionView.collectionViewLayout = layout

@@ -66,7 +66,7 @@ class TagSelectorViewConroller: UIViewController, UISearchBarDelegate, TagManage
         doneButton.setTitleColor(Color.hexStringToUIColor(hex: Color.appPrimaryColorLight), for: .normal)
         selectedTagsContainerView.backgroundColor = Color.hexStringToUIColor(hex: Color.selectedTagContainerBackground)
         selectionReportLabel.textColor = Color.hexStringToUIColor(hex: Color.slectionReportLabelColor)
-        selectionReportLabel.text = "No tag selected"
+        selectionReportLabel.text = "No skills selected"
         
         tagSearchBar.delegate = self
         
